@@ -40,6 +40,7 @@ void decodeBinary_ChannelInformation (const t_buffer* buffer, unsigned offsetInO
 	record->ScanList.refLineNo = bitsToNumeric (buffer, ofs + 88, 8);
 	record->GroupList.refLineNo = bitsToNumeric (buffer, ofs + 96, 8);
 	record->Decode18 = bitsToNumeric (buffer, ofs + 112, 8);
+	/* fprintf(stderr, "Decode18: %0lx", record->Decode18); */
 	record->RxFrequency = BCDToNumeric (buffer, ofs + 128, 32);
 	record->TxFrequency = BCDToNumeric (buffer, ofs + 160, 32);
 	record->CtcssDcsDecode = BCDToNumericForTones (buffer, ofs + 192);
@@ -260,7 +261,8 @@ static const FieldEnumerator ENUM_ChannelInformation_GroupList [1] = {
 /* Enumeration values for record ChannelInformation, field Decode18 */
 static const FieldEnumerator ENUM_ChannelInformation_Decode18 [2] = {
 	{0x2BBC5D43, "off", 0},
-	{0x09B629C8, "on", 1}
+        /* {0x09B629C8, "on", 1} */
+	{0x09B629C8, "on", 255}
 };
 
 /* Enumeration values for record ChannelInformation, field CtcssDcsDecode */
